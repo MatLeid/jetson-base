@@ -1,16 +1,65 @@
 
 # Install prepared image 
 
-Follow this guide to install the prepared image onto an empty sd card:
+Follow this guide to install the prepared image onto an empty sd card with 64GB:
 
 https://github.com/Qengineering/Jetson-Nano-image
 
-## Resize sd card after installation
+## Resize sd card after installation to full size
 
-Use a tool like GParted sudo apt-get install gparted to expand the image to larger SD cards. We recommend a minimum of 64 GB. Deep learning simply requires a lot of space.
+Use a tool like GParted ``sudo apt-get install gparted`` to expand the image to larger SD cards.
+
+# Basic Tools installation
+
+## Test CSI Camera
+
+Install https://github.com/JetsonHacksNano/CSI-Camera and run ``python3 simple_camera.py`` to test your CSI-Camera.
+
+## Install Jupyter Notbook 
+
+``pip3 install --upgrade pip``
+
+``pip3 install jupyter``
+
+start jupyter and create a ssh tunel to access remote via localhost:8000
+
+``jupyter notebook`` 
+
+``ssh -L 8000:localhost:8888 jetson@192.168.178.49``
 
 
-## Install mediapipe from binary
+# Installing Experimental Tools (work in progress)
+
+## Pose Estimation using TensorRT
+
+### Install dependencies
+
+sudo -H pip3 install Pillow==6.1
+sudo -H pip3 install torchvision
+sudo -H pip3 install tensorrt
+sudo -H pip3 install tqdm
+sudo -H pip3 install cython
+sudo -H pip3 install pycocotools
+sudo apt-get install python3-matplotlib
+
+### Install Jetcam
+
+``git clone https://github.com/NVIDIA-AI-IOT/jetcam``
+``cd jetcam``
+``sudo python3 setup.py install``
+``cd ..``
+
+### Install torch2trt
+ 
+``git clone https://github.com/NVIDIA-AI-IOT/torch2trt``
+``cd torch2trt``
+``sudo python3 setup.py install``
+``cd ..``
+
+
+## Install mediapipe from binary files
+
+warning: work in progress...
 
 ``curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=1_GRGQDwsl169TN9w_qWUs1cx9g_d4wMd" > /dev/null``
 
