@@ -145,12 +145,12 @@ draw_objects = DrawObjects(topology)
 # In[ ]:
 
 
-from jetcam.usb_camera import USBCamera
-# from jetcam.csi_camera import CSICamera
+# from jetcam.usb_camera import USBCamera
+from jetcam.csi_camera import CSICamera
 from jetcam.utils import bgr8_to_jpeg
 
-camera = USBCamera(width=WIDTH, height=HEIGHT, capture_fps=30)
-# camera = CSICamera(width=WIDTH, height=HEIGHT, capture_fps=30)
+# camera = USBCamera(width=WIDTH, height=HEIGHT, capture_fps=30)
+camera = CSICamera(width=WIDTH, height=HEIGHT, capture_fps=30)
 
 camera.running = True
 
