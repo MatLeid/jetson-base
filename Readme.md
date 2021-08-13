@@ -28,19 +28,25 @@ start jupyter and create a ssh tunel to access remote via localhost:8000
 ``ssh -L 8000:localhost:8888 jetson@192.168.178.49``
 
 
+
 # Installing Experimental Tools (work in progress)
 
-## Pose Estimation using TensorRT
+## Mediapipe (first approach)
+
+https://github.com/yockgen/mediapipe_jetson_nano
+
+
+## Pose Estimation using TensorRT (wip)
 
 ### Install dependencies
 
-sudo -H pip3 install Pillow==6.1
-sudo -H pip3 install torchvision
-sudo -H pip3 install tensorrt
-sudo -H pip3 install tqdm
-sudo -H pip3 install cython
-sudo -H pip3 install pycocotools
-sudo apt-get install python3-matplotlib
+``sudo -H pip3 install Pillow==6.1``
+
+``sudo -H pip3 install tqdm``
+
+``sudo -H pip3 install pycocotools``
+
+``sudo apt-get install python3-matplotlib``
 
 ### Install Jetcam
 
@@ -53,6 +59,13 @@ sudo apt-get install python3-matplotlib
  
 ``git clone https://github.com/NVIDIA-AI-IOT/torch2trt``
 ``cd torch2trt``
+``sudo python3 setup.py install``
+``cd ..``
+
+### Run trt_pose demo
+
+``git clone https://github.com/NVIDIA-AI-IOT/trt_pose``
+``cd trt_pose``
 ``sudo python3 setup.py install``
 ``cd ..``
 
