@@ -117,7 +117,7 @@ def main():
     sum_inference_time = 0
     fps_counter  = avg_fps_counter(30)
 
-    "cap = cv2.VideoCapture(0)
+    #cap = cv2.VideoCapture(0)
 
     camera = nano.Camera(flip=0, width=640, height=480, fps=30)
     print('CSI Camera is now ready')
