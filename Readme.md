@@ -1,9 +1,10 @@
-# Clean install
+# Base Install
 
-Use the instruction following site:
+Use the basimage that comes preinstalled with the most important tools:
+https://github.com/Qengineering/Jetson-Nano-image
 
+another great source for getting things working on the jestson nano is this repository:
 https://github.com/step305/pyFaceRec_jetson_nano/blob/master/setup.txt
-
 
 ## Test CSI Camera
 
@@ -32,36 +33,42 @@ If you get "illegal instructions" error when trying to use CSI Camera (from http
 
 # Google Coral Install
 
-echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+From https://coral.ai/docs/m2/get-started/#2a-on-linux
 
-sudo apt-get -y install curl
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install libedgetpu1-std
+First, add our Debian package repository to your system (be sure you have an internet connection):
 
-### install bmon
-sudo apt-get -y install bmon
+``echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list``
 
-### install pyCoral
-sudo apt-get -y install python3-pycoral
+``curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -``
 
-### install missing dependencies for TensorFlow
-sudo pip3 install astor
+``sudo apt-get update``
 
-### install Pillow
-sudo pip3 install Pillow
+Then install the PCIe driver and Edge TPU runtime packages:
 
-### test Coral
-mkdir coral && cd coral
-git clone https://github.com/google-coral/pycoral.git
-cd pycoral
-bash examples/install_requirements.sh classify_image.py
+``sudo apt-get install gasket-dkms libedgetpu1-std``
+
+Then install pycoral
+
+``sudo apt-get install python3-pycoral``
+
+
+install missing dependencies for TensorFlow
+
+``sudo pip3 install astor``
+
+``sudo pip3 install Pillow``
+
+Test Coral
+
+``mkdir coral && cd coral``
+``git clone https://github.com/google-coral/pycoral.git``
+``cd pycoral``
+``bash examples/install_requirements.sh classify_image.py``
 
 python3 examples/classify_image.py \
---model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite \
---labels test_data/inat_bird_labels.txt \
---input test_data/parrot.jpg
-
+    --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite \
+    --labels test_data/inat_bird_labels.txt \
+    --input test_data/parrot.jpg
 
 # Other stuff you might need
 
@@ -98,10 +105,3 @@ Run compile
 ``env EXTRA_BAZEL_ARGS="--host_javabase=@local_jdk//:jdk" bash ./compile.sh``
 
 ``sudo cp ~/bazel/output/bazel /usr/local/bin/``
-
-
-# Work in progress area - this might be incomplete and not working
-
-## Mediapipe
-
-https://github.com/yockgen/mediapipe_jetson_nano
