@@ -105,3 +105,5 @@ Run compile
 ``env EXTRA_BAZEL_ARGS="--host_javabase=@local_jdk//:jdk" bash ./compile.sh``
 
 ``sudo cp ~/bazel/output/bazel /usr/local/bin/``
+
+dfg
